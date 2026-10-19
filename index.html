@@ -3,38 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تکلیف صفحه ۱۰ علوم - نیما اصلانی</title>
+<title>تکلیف صفحه ۱۰ علوم</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { 
     font-family: Tahoma, Arial, sans-serif; 
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-    min-height: 100vh; 
-    padding: 20px; 
+    min-height: 100vh; padding: 30px 20px; 
   }
-  
-  /* ===== استایل نوار بالا (هدر) ===== */
-  .header-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 15px 30px;
-    border-radius: 15px;
-    max-width: 1200px;
-    margin: 0 auto 30px auto;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    font-weight: bold;
-    color: #333;
-  }
-  .header-bar .teacher {
-    color: #e74c3c; /* رنگ قرمز برای معلم */
-  }
-  .header-bar .student {
-    color: #2980b9; /* رنگ آبی برای دانش‌آموز */
-  }
-
-  /* ===== استایل بقیه صفحه ===== */
   h1 { text-align: center; color: #fff; font-size: 2rem; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
   .card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.2s; }
@@ -46,64 +22,65 @@
   #overlay.active { display: flex; }
   #overlay img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
   #backBtn { position: fixed; top: 20px; right: 20px; background: #ff4757; color: #fff; border: none; padding: 12px 24px; font-size: 1rem; font-family: inherit; border-radius: 50px; cursor: pointer; z-index: 10000; }
+
+  /* دکمه کنترل صدا */
+  #muteBtn {
+    position: fixed; bottom: 20px; left: 20px; 
+    background: rgba(0,0,0,0.5); color: white; border: none;
+    width: 50px; height: 50px; border-radius: 50%; font-size: 1.5rem;
+    cursor: pointer; z-index: 10000; display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.2s;
+  }
+  #muteBtn:hover { background: rgba(0,0,0,0.7); transform: scale(1.1); }
 </style>
 </head>
 <body>
 
-<!-- نوار بالا: معلم سمت چپ، دانش‌آموز سمت راست -->
-<div class="header-bar">
-  <div class="teacher">👨‍🏫 آموزگار: آقای جلالی</div>
-  <div class="student">👨‍🎓 دانش‌آموز: نیما اصلانی</div>
-</div>
+  <!-- آهنگ پس‌زمینه -->
+  <!-- ⚠️ لینک آهنگ رو اینجا بذار -->
+  <audio id="bgMusic" loop>
+    <source src="لینک_آهنگ_رو_اینجا_بذار" type="audio/mpeg">
+  </audio>
 
-<h1>📚 تکلیف صفحه ۱۰ علوم</h1>
+  <!-- دکمه قطع/وصل صدا -->
+  <button id="muteBtn" onclick="toggleMute()" title="قطع/وصل صدا">🔊</button>
 
-<div class="grid">
-  
-  <!-- بانک -->
-  <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/bank2.png')">
-    <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/bank1.png" alt="بانک">
-    <div class="label">برای دیدن جواب کلیک کن</div>
+  <h1>📚 تکلیف صفحه ۱۰ علوم</h1>
+
+  <div class="grid">
+    <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/bank2.png')">
+      <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/bank1.png" alt="بانک">
+      <div class="label">برای دیدن جواب کلیک کن</div>
+    </div>
+    <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/Confectionery2.png')">
+      <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/Confectionery1.png" alt="قنادی">
+      <div class="label">برای دیدن جواب کلیک کن</div>
+    </div>
+    <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/photography2.png')">
+      <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/photography1.png" alt="عکاسی">
+      <div class="label">برای دیدن جواب کلیک کن</div>
+    </div>
+    <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/Poultry2.png')">
+      <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/Poultry1.png" alt="مرغداری">
+      <div class="label">برای دیدن جواب کلیک کن</div>
+    </div>
+    <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/tailor2.png')">
+      <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/tailor1.png" alt="خیاطی">
+      <div class="label">برای دیدن جواب کلیک کن</div>
+    </div>
+    <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/student2.png')">
+      <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/student1.png" alt="دانش‌آموز">
+      <div class="label">برای دیدن جواب کلیک کن</div>
+    </div>
   </div>
 
-  <!-- قنادی -->
-  <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/Confectionery2.png')">
-    <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/Confectionery1.png" alt="قنادی">
-    <div class="label">برای دیدن جواب کلیک کن</div>
+  <div id="overlay">
+    <button id="backBtn" onclick="closeAnswer()">✕ برگشت</button>
+    <img id="answerImg" src="" alt="جواب">
   </div>
-
-  <!-- عکاسی -->
-  <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/photography2.png')">
-    <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/photography1.png" alt="عکاسی">
-    <div class="label">برای دیدن جواب کلیک کن</div>
-  </div>
-
-  <!-- مرغداری -->
-  <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/Poultry2.png')">
-    <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/Poultry1.png" alt="مرغداری">
-    <div class="label">برای دیدن جواب کلیک کن</div>
-  </div>
-
-  <!-- خیاطی -->
-  <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/tailor2.png')">
-    <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/tailor1.png" alt="خیاطی">
-    <div class="label">برای دیدن جواب کلیک کن</div>
-  </div>
-
-  <!-- دانش‌آموز -->
-  <div class="card" onclick="showAnswer('https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/student2.png')">
-    <img src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/student1.png" alt="دانش‌آموز">
-    <div class="label">برای دیدن جواب کلیک کن</div>
-  </div>
-
-</div>
-
-<div id="overlay">
-  <button id="backBtn" onclick="closeAnswer()">✕ برگشت</button>
-  <img id="answerImg" src="" alt="جواب">
-</div>
 
 <script>
+  // ====== توابع نمایش عکس ======
   const overlay = document.getElementById('overlay');
   const answerImg = document.getElementById('answerImg');
   
@@ -122,7 +99,27 @@
   document.addEventListener('keydown', e => { 
     if (e.key === 'Escape') closeAnswer(); 
   });
-</script>
 
+  // ====== مدیریت آهنگ ======
+  const music = document.getElementById('bgMusic');
+  const muteBtn = document.getElementById('muteBtn');
+  let isMuted = false;
+
+  window.addEventListener('load', () => {
+    music.volume = 0.5; // صدای ۵۰ درصد
+    music.play().catch(e => {
+      console.log("مرورگر اجازه پخش خودکار نداد، با اولین کلیک پخش میشه.");
+      document.body.addEventListener('click', () => {
+        music.play();
+      }, { once: true });
+    });
+  });
+
+  function toggleMute() {
+    isMuted = !isMuted;
+    music.muted = isMuted;
+    muteBtn.innerText = isMuted ? '🔇' : '🔊';
+  }
+</script>
 </body>
 </html>
