@@ -33,25 +33,27 @@
   #backBtn { position: fixed; top: 20px; right: 20px; background: #ff4757; color: #fff; border: none; padding: 12px 24px; font-size: 1rem; font-family: inherit; border-radius: 50px; cursor: pointer; z-index: 10000; }
 
   /* دکمه کنترل صدا */
-  #muteBtn {
+  #musicBtn {
     position: fixed; bottom: 20px; left: 20px; 
-    background: rgba(0,0,0,0.5); color: white; border: none;
-    width: 50px; height: 50px; border-radius: 50%; font-size: 1.5rem;
-    cursor: pointer; z-index: 10000; display: flex; justify-content: center; align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.2s;
+    background: #ff4757; color: white; border: none;
+    padding: 12px 25px; border-radius: 50px; font-size: 1rem; font-weight: bold;
+    cursor: pointer; z-index: 10000; display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: 0.2s;
   }
-  #muteBtn:hover { background: rgba(0,0,0,0.7); transform: scale(1.1); }
+  #musicBtn:hover { background: #ff6b81; transform: scale(1.05); }
 </style>
 </head>
 <body>
 
-  <!-- آهنگ پس‌زمینه (با لینک Raw گیت‌هاب) -->
+  <!-- آهنگ پس‌زمینه -->
   <audio id="bgMusic" loop>
-    <source src="https://raw.githubusercontent.com/nima1394/olom-page10/main/music.mp3" type="audio/mpeg">
+    <source src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/music.mp3.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- دکمه قطع/وصل صدا -->
-  <button id="muteBtn" onclick="toggleMute()" title="قطع/وصل صدا">🔊</button>
+  <!-- دکمه پخش/توقف آهنگ -->
+  <button id="musicBtn" onclick="toggleMusic()">
+    <span id="musicIcon">🎵</span> <span id="musicText">پخش آهنگ</span>
+  </button>
 
   <div class="header-bar">
     <div class="teacher">👨‍🏫 آموزگار: آقای جلالی</div>
@@ -115,23 +117,35 @@
 
   // ====== مدیریت آهنگ ======
   const music = document.getElementById('bgMusic');
-  const muteBtn = document.getElementById('muteBtn');
-  let isMuted = false;
+  const musicIcon = document.getElementById('musicIcon');
+  const musicText = document.getElementById('musicText');
+  let isPlaying = false;
 
+  // تلاش برای پخش خودکار
   window.addEventListener('load', () => {
-    music.volume = 0.5; // صدای ۵۰ درصد
-    music.play().catch(e => {
-      console.log("پخش خودکار بلاک شد، با اولین کلیک پخش میشه.");
-      document.body.addEventListener('click', () => {
-        music.play();
-      }, { once: true });
+    music.volume = 0.5;
+    music.play().then(() => {
+      isPlaying = true;
+      musicIcon.innerText = '⏸️';
+      musicText.innerText = 'توقف آهنگ';
+    }).catch(e => {
+      console.log("پخش خودکار نیاز به کلیک کاربر دارد.");
     });
   });
 
-  function toggleMute() {
-    isMuted = !isMuted;
-    music.muted = isMuted;
-    muteBtn.innerText = isMuted ? '🔇' : '🔊';
+  // دکمه پخش/توقف
+  function toggleMusic() {
+    if (isPlaying) {
+      music.pause();
+      isPlaying = false;
+      musicIcon.innerText = '🎵';
+      musicText.innerText = 'پخش آهنگ';
+    } else {
+      music.play();
+      isPlaying = true;
+      musicIcon.innerText = '⏸️';
+      musicText.innerText = 'توقف آهنگ';
+    }
   }
 </script>
 </body>
