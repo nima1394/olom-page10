@@ -3,7 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تکلیف صفحه ۱۰ علوم</title>
+<title>تکلیف علوم نیما اصلانی | صفحه ۱۰</title>
+
+<!-- تگ‌های سئو (SEO) برای گوگل -->
+<meta name="description" content="تکلیف علوم صفحه ۱۰ مربوط به نیما اصلانی، دانش‌آموز کلاس آقای جلالی. شامل پاسخ سوالات بانک، قنادی، عکاسی، مرغداری، خیاطی و دانش‌آموز.">
+<meta name="keywords" content="علوم نیما, نیما اصلانی, تکلیف علوم, صفحه ۱۰ علوم, آقای جلالی, علوم پایه">
+<meta name="author" content="نیما اصلانی">
+<meta name="robots" content="index, follow">
+
+<!-- تگ‌های Open Graph (برای نمایش زیبا در شبکه‌های اجتماعی) -->
+<meta property="og:title" content="تکلیف علوم نیما اصلانی">
+<meta property="og:description" content="صفحه اختصاصی تکلیف علوم صفحه ۱۰ - نیما اصلانی">
+<meta property="og:type" content="website">
+
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { 
@@ -32,7 +44,6 @@
   #overlay img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
   #backBtn { position: fixed; top: 20px; right: 20px; background: #ff4757; color: #fff; border: none; padding: 12px 24px; font-size: 1rem; font-family: inherit; border-radius: 50px; cursor: pointer; z-index: 10000; }
 
-  /* دکمه کنترل صدا */
   #musicBtn {
     position: fixed; bottom: 20px; left: 20px; 
     background: #ff4757; color: white; border: none;
@@ -45,12 +56,10 @@
 </head>
 <body>
 
-  <!-- آهنگ پس‌زمینه -->
   <audio id="bgMusic" loop>
     <source src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/music.mp3.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- دکمه پخش/توقف آهنگ -->
   <button id="musicBtn" onclick="toggleMusic()">
     <span id="musicIcon">🎵</span> <span id="musicText">پخش آهنگ</span>
   </button>
@@ -95,7 +104,6 @@
   </div>
 
 <script>
-  // ====== توابع نمایش عکس ======
   const overlay = document.getElementById('overlay');
   const answerImg = document.getElementById('answerImg');
   
@@ -115,13 +123,11 @@
     if (e.key === 'Escape') closeAnswer(); 
   });
 
-  // ====== مدیریت آهنگ ======
   const music = document.getElementById('bgMusic');
   const musicIcon = document.getElementById('musicIcon');
   const musicText = document.getElementById('musicText');
   let isPlaying = false;
 
-  // تلاش برای پخش خودکار
   window.addEventListener('load', () => {
     music.volume = 0.5;
     music.play().then(() => {
@@ -133,7 +139,6 @@
     });
   });
 
-  // دکمه پخش/توقف
   function toggleMusic() {
     if (isPlaying) {
       music.pause();
