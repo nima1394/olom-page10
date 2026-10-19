@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تکلیف علوم نیما اصلانی | صفحه ۱۰</title>
 
+<!-- کد تایید گوگل (Google Search Console) -->
+<meta name="google-site-verification" content="v4XYxxGnsGSpopDfhcJePBLhlb25U2XApsVhaIVZPcE" />
+
 <!-- تگ‌های سئو (SEO) برای گوگل -->
 <meta name="description" content="تکلیف علوم صفحه ۱۰ مربوط به نیما اصلانی، دانش‌آموز کلاس آقای جلالی. شامل پاسخ سوالات بانک، قنادی، عکاسی، مرغداری، خیاطی و دانش‌آموز.">
 <meta name="keywords" content="علوم نیما, نیما اصلانی, تکلیف علوم, صفحه ۱۰ علوم, آقای جلالی, علوم پایه">
@@ -56,14 +59,17 @@
 </head>
 <body>
 
+  <!-- آهنگ پس‌زمینه -->
   <audio id="bgMusic" loop>
     <source src="https://jimvkiprcbpqruvhyfrm.supabase.co/storage/v1/object/public/homework/music.mp3.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- دکمه پخش/توقف آهنگ -->
   <button id="musicBtn" onclick="toggleMusic()">
     <span id="musicIcon">🎵</span> <span id="musicText">پخش آهنگ</span>
   </button>
 
+  <!-- نوار بالای صفحه -->
   <div class="header-bar">
     <div class="teacher">👨‍🏫 آموزگار: آقای جلالی</div>
     <div class="student">👨‍🎓 دانش‌آموز: نیما اصلانی</div>
@@ -98,12 +104,14 @@
     </div>
   </div>
 
+  <!-- لایه نمایش عکس -->
   <div id="overlay">
     <button id="backBtn" onclick="closeAnswer()">✕ برگشت</button>
     <img id="answerImg" src="" alt="جواب">
   </div>
 
 <script>
+  // ====== توابع نمایش عکس ======
   const overlay = document.getElementById('overlay');
   const answerImg = document.getElementById('answerImg');
   
@@ -123,6 +131,7 @@
     if (e.key === 'Escape') closeAnswer(); 
   });
 
+  // ====== مدیریت آهنگ ======
   const music = document.getElementById('bgMusic');
   const musicIcon = document.getElementById('musicIcon');
   const musicText = document.getElementById('musicText');
